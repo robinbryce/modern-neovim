@@ -10,6 +10,8 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPre",
     config = true,
+    main = "ibl",
+    opts = {}
   },
   {
     "stevearc/dressing.nvim",
