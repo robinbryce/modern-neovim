@@ -1,13 +1,11 @@
 #!/bin/sh
 
-MODERN_NEOVIM=~/.config/modern-neovim-tmux
-export MODERN_NEOVIM
+MNV_APP_NAME=modern-neovim-tmux
+MNV_APP_CONFIG=~/.config/$MNV_APP_NAME
+export MNV_APP_NAME MNV_APP_CONFIG
 
-rm -rf "$MODERN_NEOVIM"
+rm -rf $MNV_APP_CONFIG && mkdir -p $MNV_APP_CONFIG
 
-mkdir -p "$MODERN_NEOVIM"/share
-mkdir -p "$MODERN_NEOVIM"/nvim
+stow --restow --target=$MNV_APP_CONFIG .
 
-stow --restow --target="$MODERN_NEOVIM"/nvim .
-
-alias nvt='XDG_DATA_HOME=$MODERN_NEOVIM/share XDG_CACHE_HOME=$MODERN_NEOVIM XDG_CONFIG_HOME=$MODERN_NEOVIM nvim'
+alias nvt="NVIM_APPNAME=$MNV_APP_NAME nvim"
